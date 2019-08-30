@@ -1,4 +1,5 @@
-FROM jupyter/scipy-notebook:2ce7c06a61a1
+#FROM jupyter/scipy-notebook:2ce7c06a61a1
+FROM jupyter/scipy-notebook:6c3390a9292e
 
 WORKDIR /home/jovyan/
 
@@ -12,7 +13,8 @@ COPY notebooks /home/jovyan/notebooks
 # Allow user to write to directory
 USER root
 RUN chown -R $NB_USER /home/jovyan \
-    && chmod -R 774 /home/jovyan
+    && chmod -R 774 /home/jovyan \
+    && rm -fR /home/jovyan/work
 USER $NB_USER
 
 # Expose the notebook port
